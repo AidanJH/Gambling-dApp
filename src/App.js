@@ -7,7 +7,7 @@ const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [allWaves, setAllWaves] = useState([]);
 
-  const contractAddress = "0xc9E193Db145B5f52eACF88A8eCDbc95C456658E7"
+  const contractAddress = "0x50CC8813Baf97435830440Dd808903A137C11435"
   const contractABI = abi.abi;
   
 
@@ -65,7 +65,7 @@ const App = () => {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
-        const waveTxn = await wavePortalContract.wave(message, { gasLimit: 300000 })
+        const waveTxn = await wavePortalContract.wave("message", { gasLimit: 300000 })
         let count = await wavePortalContract.getTotalWaves();
       
         console.log("Retrieved total wave count...", count.toNumber());

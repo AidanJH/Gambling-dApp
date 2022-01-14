@@ -8,7 +8,7 @@ const App = () => {
   const [allWaves, setAllWaves] = useState([]);
   const [waveMessage, setWaveMessage] = useState("");
 
-  const contractAddress = "0xeF52EC18b325F94fC1Fc886dfBE2aac15679E6cC"
+  const contractAddress = "0x50CC8813Baf97435830440Dd808903A137C11435"
   const contractABI = abi.abi;
 
   const onMessageChange = (waveMessage) => {

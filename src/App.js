@@ -6,9 +6,15 @@ import abi from "./waveportal.json"
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [allWaves, setAllWaves] = useState([]);
+  const [waveMessage, setWaveMessage] = useState("");
 
-  const contractAddress = "0xc9E193Db145B5f52eACF88A8eCDbc95C456658E7"
+  const contractAddress = "0xeF52EC18b325F94fC1Fc886dfBE2aac15679E6cC"
   const contractABI = abi.abi;
+
+  const onMessageChange = (waveMessage) => {
+    setWaveMessage(waveMessage.target.value);
+    console.log(waveMessage.target.value);
+  }
   
 
   const checkIfWalletIsConnected = async () => {
@@ -65,7 +71,8 @@ const App = () => {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
-        const waveTxn = await wavePortalContract.wave(message, { gasLimit: 300000 })
+        await wavePortalContract.wave(waveMessage, { gasLimit: 300000 })
+        console.log("Input message is: " + waveMessage);
         let count = await wavePortalContract.getTotalWaves();
       
         console.log("Retrieved total wave count...", count.toNumber());
@@ -96,6 +103,8 @@ const getAllWaves = async () => {
       });
 
       setAllWaves(wavesCleaned);
+
+      console.log(allWaves);
     } else {
       console.log("Ethereum object doesn't exist!");
     }
@@ -153,11 +162,18 @@ useEffect(() => {
           Wave at Me
         </button>
 
+        <input className="waveInput" onChange={(e)=> {onMessageChange(e)}}/>
+
         {!currentAccount && (
           <button className="waveButton" onClick={connectWallet}>
             Connect Wallet
           </button>
         )}
+
+        <button className="getAllWaves" onClick={getAllWaves}>
+          Get All Waves
+        </button>
+
 
         {allWaves.map((wave, index) => {
           return (

@@ -24,7 +24,7 @@ contract WavePortal {
     mapping(address => uint256) public lastWavedAt;
 
     constructor() payable {
-        console.log("We have been constructed!");
+
         /*
          * Set the initial seed
          */
@@ -35,10 +35,10 @@ contract WavePortal {
         /*
          * We need to make sure the current timestamp is at least 15-minutes bigger than the last timestamp we stored
          */
-        require(
-            lastWavedAt[msg.sender] + 10 seconds < block.timestamp,
-            "Wait 15m"
-        );
+        // require(
+        //     lastWavedAt[msg.sender] + 10 seconds < block.timestamp,
+        //     "Wait 15m"
+        // );
 
         /*
          * Update the current timestamp we have for the user
@@ -46,7 +46,6 @@ contract WavePortal {
         lastWavedAt[msg.sender] = block.timestamp;
 
         totalWaves += 1;
-        console.log("%s has waved!", msg.sender);
 
         waves.push(Wave(msg.sender, _message, block.timestamp));
 
@@ -56,7 +55,7 @@ contract WavePortal {
         seed = (block.difficulty + block.timestamp + seed) % 100;
 
         if (seed <= 50) {
-            console.log("%s won!", msg.sender);
+
 
             uint256 prizeAmount = 0.0001 ether;
             require(

@@ -2,6 +2,9 @@ const main = async () => {
     const [deployer] = await hre.ethers.getSigners();
     const accountBalance = await deployer.getBalance();
     const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
+    const raffleContractFactory = await hre.ethers.getContractFactory("Raffle");
+    const raffleContract = await raffleContractFactory.deploy();
+  
     
     console.log("Deploying contracts with account: ", deployer.address);
     console.log("Account balance: ", accountBalance.toString());
@@ -10,6 +13,7 @@ const main = async () => {
     const portal = await Token.deploy();
     
     await portal.deployed();
+    await raffleContract.deployed();
   
     console.log("WavePortal address: ", portal.address);
 

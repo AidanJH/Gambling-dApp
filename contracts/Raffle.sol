@@ -53,16 +53,17 @@ contract Raffle is ERC721URIStorage {
 
         nftAddress[newItemId] = msg.sender;
         console.log("nftAddresses, %s", nftAddress[newItemId]);
+    
         _tokenIds.increment();
     }
 
     //Purchase a raffle ticket back from customer
-    function buyNft() public {
+    function buyBackNFT(address NFTaddress) public {
         
     }
 
     //Sell a raffle ticket to a customer
-    function sellNft(uint256 amount, uint nftId, address buyerAddress) public{
+    function sellNFT(uint256 amount, uint nftId, address buyerAddress) public{
         //Receive funds        
         //Increment counter for how many NFT's are left
         require(
@@ -83,6 +84,7 @@ contract Raffle is ERC721URIStorage {
             (bool sent, bytes memory data) = _to.call{value: msg.value}("");
             require(sent, "Failed to send Ether");
         }
+
     //TEST NFT JSON DATA
     //https://jsonkeeper.com/b/OD3Z
 

@@ -22,7 +22,7 @@ const main = async () => {
   await raffleContract.makeNFT();
 
 
-  await raffleContract.buyNft(100, 1, "0x80207A9870354f9Cf4e0598bA7450aAC1A2cea47");
+  await raffleContract.sellNFT(100, 1, "0x80207A9870354f9Cf4e0598bA7450aAC1A2cea47");
 
   await raffleContract.inspectOwners();
   //console.log()

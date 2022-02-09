@@ -1,7 +1,7 @@
 const main = async () => {
     const [deployer] = await hre.ethers.getSigners();
     const accountBalance = await deployer.getBalance();
-    const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
+    //const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
     const raffleContractFactory = await hre.ethers.getContractFactory("Raffle");
     const raffleContract = await raffleContractFactory.deploy();
   
@@ -9,18 +9,23 @@ const main = async () => {
     console.log("Deploying contracts with account: ", deployer.address);
     console.log("Account balance: ", accountBalance.toString());
   
-    const Token = await hre.ethers.getContractFactory("WavePortal");
+    const Token = await hre.ethers.getContractFactory("Raffle");
+    // const Token = await hre.ethers.getContractFactory("WavePortal");
     const portal = await Token.deploy();
     
     await portal.deployed();
     await raffleContract.deployed();
   
-    console.log("WavePortal address: ", portal.address);
+    // console.log("WavePortal address: ", portal.address);
+    console.log("Raflle address: ", portal.address);
 
-    const waveContract = await waveContractFactory.deploy({
-        value: hre.ethers.utils.parseEther("0.001"),
-    });
-    await waveContract.deployed();
+    // const waveContract = await waveContractFactory.deploy({
+    //     value: hre.ethers.utils.parseEther("0.001"),
+    // });
+    const waveContract = await raffleContractFactory.deploy({
+      value: hre.ethers.utils.parseEther("0.001"),
+  });
+    await raffleContract.deployed();
  
   };
   

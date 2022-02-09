@@ -53,7 +53,7 @@ contract Raffle is ERC721URIStorage {
 
         nftAddress[newItemId] = msg.sender;
         console.log("nftAddresses, %s", nftAddress[newItemId]);
-    
+        
         _tokenIds.increment();
     }
 
@@ -84,6 +84,8 @@ contract Raffle is ERC721URIStorage {
             (bool sent, bytes memory data) = _to.call{value: msg.value}("");
             require(sent, "Failed to send Ether");
         }
+
+  
 
     //TEST NFT JSON DATA
     //https://jsonkeeper.com/b/OD3Z

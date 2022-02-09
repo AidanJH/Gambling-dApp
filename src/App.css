@@ -1,3 +1,4 @@
+@import '~antd/dist/antd.css';
 .mainContainer {
   display: flex;
   justify-content: center;
@@ -31,4 +32,21 @@
   border: 0;
   border-radius: 5px;
   
+}
+.boxStyle{
+  border-style: solid;
+}
+
+.navBar{
+  display: flex;
+align-items: center;
+  
+}
+.menu{
+  flex: 2;
+}
+
+.butt{
+  margin-left: auto;
+margin-right: 1rem;
 }
